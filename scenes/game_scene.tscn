@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://0gnd63gdj8v0"]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="GameBoardLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUiLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Label" type="Label" parent="GameUiLayer"]
+offset_left = 209.0
+offset_top = 237.0
+offset_right = 747.0
+offset_bottom = 444.0
+text = "Scene has Loaded
+"

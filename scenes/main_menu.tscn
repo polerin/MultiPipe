@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://wspve7l47lnf"]
+
+[ext_resource type="Script" path="res://src/menu/MenuControl.cs" id="1_px2mx"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_px2mx")
+
+[node name="MenuContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 24.0
+offset_right = 1100.0
+offset_bottom = 437.0
+
+[node name="StartGameButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+text = "Load The Thing"
