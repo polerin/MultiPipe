@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://61fabylt8141"]
+
+[ext_resource type="PackedScene" uid="uid://dkdogri7bh2p7" path="res://scenes/subscenes/game_board.tscn" id="1_eljac"]
+[ext_resource type="PackedScene" uid="uid://cmwkh1d0ayqa2" path="res://scenes/subscenes/pause_menu.tscn" id="2_bs6o1"]
+[ext_resource type="PackedScene" uid="uid://dcusved63hqlw" path="res://scenes/subscenes/game_ui.tscn" id="3_kt7hh"]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="GameBoardLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="GameBoardLayer" instance=ExtResource("1_eljac")]
+
+[node name="GameUiLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="pause_menu_scene" parent="GameUiLayer" instance=ExtResource("2_bs6o1")]
+visible = false
+top_level = true
+
+[node name="GameUi" parent="GameUiLayer" instance=ExtResource("3_kt7hh")]
