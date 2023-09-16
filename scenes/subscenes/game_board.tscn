@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkdogri7bh2p7"]
+
+[ext_resource type="TileSet" uid="uid://d2slh008ltqo4" path="res://assets/tilesets/pipes.tres" id="1_7m1qq"]
+[ext_resource type="Script" path="res://src/game_flow/GameBoardMap.cs" id="2_fb37t"]
+
+[node name="GameBoard" type="Node2D"]
+
+[node name="GameBoardMap" type="TileMap" parent="."]
+position = Vector2(568, 333)
+tile_set = ExtResource("1_7m1qq")
+format = 2
+layer_0/name = "main_pipes"
+script = ExtResource("2_fb37t")
