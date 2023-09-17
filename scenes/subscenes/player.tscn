@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1boa2cdby5xs"]
+
+[ext_resource type="Texture2D" uid="uid://bxtu7naooov45" path="res://assets/sprites/selectorFull.png" id="1_t1uwb"]
+
+[node name="player" type="Node2D"]
+
+[node name="PlayerSelector" type="Sprite2D" parent="."]
+texture = ExtResource("1_t1uwb")
+centered = false

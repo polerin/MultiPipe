@@ -1,13 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkdogri7bh2p7"]
+[gd_scene load_steps=4 format=3 uid="uid://dkdogri7bh2p7"]
 
 [ext_resource type="TileSet" uid="uid://d2slh008ltqo4" path="res://assets/tilesets/pipes.tres" id="1_7m1qq"]
 [ext_resource type="Script" path="res://src/game_flow/GameBoardMap.cs" id="2_fb37t"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srlp3"]
+bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+
 [node name="GameBoard" type="Node2D"]
 
+[node name="BoardPanel" type="Panel" parent="."]
+offset_right = 360.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_srlp3")
+
 [node name="GameBoardMap" type="TileMap" parent="."]
-position = Vector2(568, 333)
 tile_set = ExtResource("1_7m1qq")
 format = 2
 layer_0/name = "main_pipes"
+layer_1/name = "generated_pipes"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(-65531, 0, 0, -131067, 393216, 0, 720896, 0, 3, 720899, 0, 2, 720902, 0, 1, 720905, 0, 0, 786441, 524288, 0, 786438, 524288, 1, 786435, 524288, 2, 786432, 524288, 3)
 script = ExtResource("2_fb37t")

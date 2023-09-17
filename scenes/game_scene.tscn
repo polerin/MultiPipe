@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://0gnd63gdj8v0"]
+[gd_scene load_steps=5 format=3 uid="uid://0gnd63gdj8v0"]
 
 [ext_resource type="PackedScene" uid="uid://dkdogri7bh2p7" path="res://scenes/subscenes/game_board.tscn" id="1_3ut3p"]
+[ext_resource type="PackedScene" uid="uid://b1boa2cdby5xs" path="res://scenes/subscenes/player.tscn" id="2_1em36"]
 [ext_resource type="PackedScene" uid="uid://cmwkh1d0ayqa2" path="res://scenes/subscenes/pause_menu.tscn" id="2_h8xyu"]
 [ext_resource type="PackedScene" uid="uid://dcusved63hqlw" path="res://scenes/subscenes/game_ui.tscn" id="3_6c4ql"]
 
@@ -9,6 +10,10 @@
 [node name="GameBoardLayer" type="CanvasLayer" parent="."]
 
 [node name="Node2D" parent="GameBoardLayer" instance=ExtResource("1_3ut3p")]
+position = Vector2(568, 200)
+
+[node name="player" parent="GameBoardLayer" instance=ExtResource("2_1em36")]
+position = Vector2(568, 200)
 
 [node name="GameUiLayer" type="CanvasLayer" parent="."]
 layer = 100

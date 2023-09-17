@@ -18,7 +18,16 @@ public partial class PlayerUI : Node2D
 	{
         QueuePositions = new List<Vector2I> { new Vector2I(2, 2), new Vector2I(3, 2), new Vector2I(4, 2), new Vector2I(5, 2), new Vector2I(6, 2) };
         SelectPositions = new List<Vector2I> { new Vector2I(4, 4), new Vector2I(6, 6), new Vector2I(4, 8), new Vector2I(2, 6) };
-		PlayerTileMap = GetNode<TileMap>("Container/DisplayContainer/TileMap");
+		PlayerTileMap = GetNode<TileMap>("TileMap");
+
+        foreach (var queuePosition in QueuePositions)
+        {
+            PlayerTileMap.SetCell(queueLayer, queuePosition, 0, GetRandomPipe());
+        }
+        foreach (var selectPosition in SelectPositions)
+        {
+            PlayerTileMap.SetCell(selectLayer, selectPosition, 0, GetRandomPipe());
+        }
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +53,6 @@ public partial class PlayerUI : Node2D
         var selectIndex = 0; //CHANGE BASED ON EVENT
         GD.Print("Select Index = " + selectIndex);
         PlayerTileMap.EraseCell(selectLayer, SelectPositions[selectIndex]);
-        PlayerTileMap.ForceUpdate();
         UpdateQueue(selectIndex);
     }
     public void UpdateQueue(int selectIndex)
