@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn2ivot6om6j1"]
+
+[ext_resource type="Script" path="res://src/menu/start_game/PlayerSelect.cs" id="1_svivu"]
+
+[node name="PlayerSelect" type="Control"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -508.0
+offset_bottom = -498.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svivu")
+
+[node name="PlayerNumber" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Player 1"
+
+[node name="PlayerSource" type="Label" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 24.0
+offset_right = 161.0
+offset_bottom = 50.0
+text = "Waiting for player
+"
