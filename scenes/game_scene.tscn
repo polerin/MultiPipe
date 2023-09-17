@@ -15,6 +15,6 @@ layer = 100
 
 [node name="pause_menu_scene" parent="GameUiLayer" instance=ExtResource("2_h8xyu")]
 visible = false
-top_level = true
+z_index = 100
 
 [node name="GameUi" parent="GameUiLayer" instance=ExtResource("3_6c4ql")]
