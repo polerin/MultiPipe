@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtff8n0onruko"]
+
+[ext_resource type="Script" path="res://src/game_flow/GameSetupControl.cs" id="1_sq3ui"]
+[ext_resource type="PackedScene" uid="uid://dn2ivot6om6j1" path="res://scenes/player_related/player_select.tscn" id="2_pm55h"]
+
+[node name="StartGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sq3ui")
+
+[node name="PlayerContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 365.0
+offset_bottom = 545.0
+
+[node name="PlayerSelect1" parent="PlayerContainer" instance=ExtResource("2_pm55h")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerSelect2" parent="PlayerContainer" instance=ExtResource("2_pm55h")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerSelect3" parent="PlayerContainer" instance=ExtResource("2_pm55h")]
+unique_name_in_owner = true
+layout_mode = 2
+PlayerNumber = 3
+
+[node name="PlayerSelect4" parent="PlayerContainer" instance=ExtResource("2_pm55h")]
+unique_name_in_owner = true
+layout_mode = 2
+PlayerNumber = 4
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartGameButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+
+[node name="CancelGameButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
