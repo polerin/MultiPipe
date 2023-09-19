@@ -11,14 +11,12 @@ public partial class PlayerUI : Node2D
 	public int queueLayer = 0;
     public int selectLayer = 1;
 
-
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-        QueuePositions = new List<Vector2I> { new Vector2I(2, 2), new Vector2I(3, 2), new Vector2I(4, 2), new Vector2I(5, 2), new Vector2I(6, 2) };
-        SelectPositions = new List<Vector2I> { new Vector2I(4, 4), new Vector2I(6, 6), new Vector2I(4, 8), new Vector2I(2, 6) };
-		PlayerTileMap = GetNode<TileMap>("TileMap");
+        QueuePositions = new List<Vector2I> { new Vector2I(4,3), new Vector2I(5,3), new Vector2I(6,3), new Vector2I(7,3), new Vector2I(8,3) };
+        SelectPositions = new List<Vector2I> { new Vector2I(5,6), new Vector2I(7,8), new Vector2I(5,10), new Vector2I(3,8) };
+		PlayerTileMap = GetNode<TileMap>("PanelContainer/TileMap");
 
         foreach (var queuePosition in QueuePositions)
         {
