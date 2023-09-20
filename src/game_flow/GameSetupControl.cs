@@ -1,26 +1,33 @@
 using Godot;
 using System;
 
-public partial class GameSetupControl : Control
+public partial class GameSetupControl : Control, IGameStateAware
 {
 
-	private PlayerDescription[] PlayerDescriptions = {
-		PlayerDescription.CreateInactive(),
-		PlayerDescription.CreateInactive(),
-		PlayerDescription.CreateInactive(),
-		PlayerDescription.CreateInactive()
-	};
+	public GameStateChangeRequest RequestNewState { get; set; }
 
-	private PlayerSelect[] PlayerSlots = new PlayerSelect[4];
+	private GameStateContainer CurrentGame;
+
+	private PlayerSelect[] PlayerSelects = new PlayerSelect[4];
 
 	private bool[] ControllerActivation = {false, false, false, false};
+
+	private Button StartGameButton;
+	private Button CancelGameButton;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		for (int i = 0; i < 4; i++) {
-			this.FindSlot(i);
+			this.FindSlotNode(i);
 		}
+
+		this.StartGameButton = this.GetNode<Button>("%StartGameButton");
+		this.StartGameButton.Pressed += this.RequestStartGame;
+		
+		this.CancelGameButton = this.GetNode<Button>("%CancelGameButton");
+		this.CancelGameButton.Pressed += () => this.LoadGameScene("main_menu");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,25 +38,50 @@ public partial class GameSetupControl : Control
 		}
 	}
 
-	private void FindSlot(int slotIndex)
+	public void AddGameState(GameStateContainer gameState)
 	{
-		this.PlayerSlots[slotIndex] = this.GetNode<PlayerSelect>("%PlayerSelect" + (slotIndex + 1));
+		this.CurrentGame = gameState;
+	}
 
-		if (this.PlayerSlots[slotIndex] == null) {
+	private void FindSlotNode(int slotIndex)
+	{
+		this.PlayerSelects[slotIndex] = this.GetNode<PlayerSelect>("%PlayerSelect" + (slotIndex + 1));
+
+		if (this.PlayerSelects[slotIndex] == null) {
 			throw new Exception($"Unable to find player slot index {slotIndex}");
+		}
+	}
+
+	/// <summary>
+	/// @Todo refactor this method in GameSetupControl and MenuControl
+	/// </summary>
+	/// <param name="scene_name"></param> <summary>
+	/// 
+	/// </summary>
+	/// <param name="scene_name"></param>
+	private void LoadGameScene(string scene_name) 
+    {
+		this.GetTree().ChangeSceneToFile("res://scenes/" + scene_name +".tscn");
+	}
+
+	private void RequestStartGame()
+	{
+		if (this.RequestNewState != null) {
+			this.RequestNewState(GameState.BeforeStart);
 		}
 	}
 
 	private void CheckController(int controllerId)
 	{
 		// Xbox "B"
-		if (this.ControllerActivation[controllerId] == true  && Input.IsActionPressed($"c{controllerId}_select_1")) {
+		if (this.ControllerActivation[controllerId] == true  && Input.IsActionJustPressed($"c{controllerId}_select_1")) {
 			// TODO Deactivate player assignment!
+
 			return;
 		}
         
 		// Xbox "A"
-		if (this.ControllerActivation[controllerId] == false && Input.IsActionPressed($"c{controllerId}_select_2")) {
+		if (this.ControllerActivation[controllerId] == false && Input.IsActionJustPressed($"c{controllerId}_select_2")) {
 			this.ActivateLocalPlayer(controllerId);
 		}
 	}
@@ -63,7 +95,9 @@ public partial class GameSetupControl : Control
 			return;
 		}
 
-		this.PlayerDescriptions[playerSlot] = PlayerDescription.CreateLocal(playerSlot, controllerId);
+		this.CurrentGame.Players[playerSlot] = PlayerDescription.CreateLocal(playerSlot, controllerId);
+		this.PlayerSelects[playerSlot].ActivatePlayer(this.CurrentGame.Players[playerSlot]);
+		this.ControllerActivation[controllerId] = true;
 		
 	}
 
@@ -77,7 +111,9 @@ public partial class GameSetupControl : Control
 	private int FindFirstAvailableSlot()
 	{
 		for (int i = 0; i < 4; i++) {
-			if (this.PlayerDescriptions[i].PlayerSource == PlayerSource.Inactive) {
+
+			GD.Print($"Checking player slot {i}, status {this.CurrentGame.Players[i].PlayerSource}");
+			if (this.CurrentGame.Players[i].PlayerSource == PlayerSource.Inactive) {
 				return i;
 			}
 		}

@@ -14,7 +14,7 @@ public partial class MenuControl : Control
 	{
         //hackety hack hack 
         this.ButtonStartGame = this.GetNode<Button>("MenuContainer/HBoxContainer/LeftMenu/ButtonStartGame");
-		this.ButtonStartGame.Pressed += () => this.LoadGameScene("game_scene");
+		this.ButtonStartGame.Pressed += () => this.LoadGameScene("game_flow_container");
 
         this.ButtonStartPolerin = this.GetNode<Button>("MenuContainer/HBoxContainer/LeftMenu/ButtonStartPolerin");
         this.ButtonStartPolerin.Pressed += () => this.LoadGameScene("test1_scene");
@@ -31,6 +31,13 @@ public partial class MenuControl : Control
 	{
 	}
 
+	/// <summary>
+	/// @Todo refactor this method in GameSetupControl and MenuControl
+	/// </summary>
+	/// <param name="scene_name"></param> <summary>
+	/// 
+	/// </summary>
+	/// <param name="scene_name"></param>
 	private void LoadGameScene(string scene_name) 
     {
 		this.GetTree().ChangeSceneToFile("res://scenes/" + scene_name +".tscn");

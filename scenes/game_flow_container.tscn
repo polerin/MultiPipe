@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5lqoi7m5rf15"]
+
+[ext_resource type="Script" path="res://src/game_flow/GameFlowContainer.cs" id="1_7g1lk"]
+[ext_resource type="PackedScene" uid="uid://dtff8n0onruko" path="res://scenes/start_game.tscn" id="2_aobuq"]
+
+[node name="GameFlowContainer" type="Node"]
+script = ExtResource("1_7g1lk")
+
+[node name="StartGame" parent="." instance=ExtResource("2_aobuq")]

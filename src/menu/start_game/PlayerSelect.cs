@@ -5,7 +5,7 @@ public partial class PlayerSelect : Control
 {
 	public bool PlayerIsActive { get; private set; }
 
-	[Export(PropertyHint.Range, "1,4,")]
+	[Export(PropertyHint.Range, "0,3,")]
 	private int PlayerNumber = 1;
 
 	private PlayerDescription? PlayerDescription; 
@@ -31,7 +31,7 @@ public partial class PlayerSelect : Control
 			throw new Exception($"Unable to correctly initialize player select for player number {this.PlayerNumber}");
 		}
 
-		this.PlayerNumberLabel.Text = $"Player {this.PlayerNumber}";
+		this.PlayerNumberLabel.Text = $"Player {this.PlayerNumber + 1}";
 		this.DisplayActiveState();
 	}
 
