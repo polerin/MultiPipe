@@ -3,6 +3,8 @@ using System;
 
 public partial class GameFlowContainer : Node
 {
+	[Export]
+	protected string TargetGameScene = "game_scene";
 	protected Node LoadedScene;
 	protected GameStateContainer CurrentGameState;
 
@@ -67,7 +69,7 @@ public partial class GameFlowContainer : Node
 	protected void HandleGameStateChangeRequest(GameState newState) 
 	{
 		if (newState == GameState.BeforeStart) {
-			this.SetCurrentChildScene("game_scene");
+			this.SetCurrentChildScene(this.TargetGameScene);
 		}
 	}
 }

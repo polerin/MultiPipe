@@ -17,10 +17,10 @@ public partial class MenuControl : Control
 		this.ButtonStartGame.Pressed += () => this.LoadGameScene("game_flow_container");
 
         this.ButtonStartPolerin = this.GetNode<Button>("MenuContainer/HBoxContainer/LeftMenu/ButtonStartPolerin");
-        this.ButtonStartPolerin.Pressed += () => this.LoadGameScene("test1_scene");
+        this.ButtonStartPolerin.Pressed += () => this.LoadGameScene("test_scenes/game_flow_container_polerin");
 
         this.ButtonStartGiTnEd = this.GetNode<Button>("MenuContainer/HBoxContainer/LeftMenu/ButtonStartGiTnEd");
-        this.ButtonStartGiTnEd.Pressed += () => this.LoadGameScene("test2_scene");
+        this.ButtonStartGiTnEd.Pressed += () => this.LoadGameScene("test_scenes/game_flow_container_gitned");
 
         this.ButtonQuitToDesktop = this.GetNode<Button>("MenuContainer/HBoxContainer/LeftMenu/ButtonQuitToDesktop");
         this.ButtonQuitToDesktop.Pressed += () => this.ExitApplication();

@@ -11,10 +11,10 @@ public partial class PauseMenu : Node2D
     public override void _Ready()
     {
         //hackety hack hack 
-        this.ButtonQuitToMenu = this.GetNode<Button>("MenuContainer/HBoxContainer/PauseMenu/ButtonQuitToMenu");
+        this.ButtonQuitToMenu = this.GetNode<Button>("%ButtonQuitToMenu");
         this.ButtonQuitToMenu.Pressed += () => this.LoadGameScene("main_menu");
 
-        this.ButtonQuitToDesktop = this.GetNode<Button>("MenuContainer/HBoxContainer/PauseMenu/ButtonQuitToDesktop");
+        this.ButtonQuitToDesktop = this.GetNode<Button>("%ButtonQuitToDesktop");
         this.ButtonQuitToDesktop.Pressed += () => this.ExitApplication();
     }
 

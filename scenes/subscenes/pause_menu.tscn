@@ -39,9 +39,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ButtonQuitToMenu" type="Button" parent="MenuContainer/PauseMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to Main Menu"
 
 [node name="ButtonQuitToDesktop" type="Button" parent="MenuContainer/PauseMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to Desktop"

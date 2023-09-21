@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://c317r10wadbm3"]
+
+[ext_resource type="Script" path="res://src/game_flow/GameSceneControl.cs" id="1_7gj15"]
+[ext_resource type="PackedScene" uid="uid://dkdogri7bh2p7" path="res://scenes/subscenes/game_board.tscn" id="1_q0r4f"]
+[ext_resource type="PackedScene" uid="uid://cmwkh1d0ayqa2" path="res://scenes/subscenes/pause_menu.tscn" id="2_00wtr"]
+[ext_resource type="PackedScene" uid="uid://dcusved63hqlw" path="res://scenes/subscenes/game_ui.tscn" id="3_7o335"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_7gj15")
+
+[node name="GameBoardLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="GameBoardLayer" instance=ExtResource("1_q0r4f")]
+
+[node name="GameUiLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="pause_menu_scene" parent="GameUiLayer" instance=ExtResource("2_00wtr")]
+visible = false
+top_level = true
+
+[node name="GameUi" parent="GameUiLayer" instance=ExtResource("3_7o335")]
