@@ -2,6 +2,14 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Listener for keyboard/controller on a specific machine.
+/// 
+/// This is not intended to directly controll a player, instead
+/// it connects to the server and asks to move/place a piece.
+/// All movement is done server side, then replicated locally by
+/// RPC (for remote clients) or just shown (local clients)
+/// </summary>
 public class LocalPlayerController: IPlayerController
 {
     private int ControllerIndex = -1;

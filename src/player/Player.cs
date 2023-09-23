@@ -7,27 +7,103 @@ public partial class Player : Node
 	[Export(PropertyHint.Range, "1,4,")]
 	private int PlayerNumber = 1;
 
-	public IPlayerController? PlayerController { set; private get; }
+	[Export(PropertyHint.Range, "0,10")]
+	private Vector2I CurrentPosition = new Vector2I(0,0);
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		this.PlayerController?.PrepareInputs(this.PlayerNumber);
-	}
+	public int BoardSize = 20;
+	private double MovementDuration = 100;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public bool Move(MovementDirection movement) 
 	{
-	}
-
-	public override void _PhysicsProcess(double delta) 
-	{
-		if (this.PlayerController == null) {
-			return;
+		switch(movement) {
+			case MovementDirection.Up: 
+				return this.MoveUp();
+			case MovementDirection.Down:
+				return this.MoveDown();
+			case MovementDirection.Left:
+				return this.MoveLeft();
+			case MovementDirection.Right:
+				return this.MoveRight();
 		}
 
-		InputInstruction instruction = this.PlayerController.GetInput();
+		return false;
+	}
 
-		// execute instruction here
+	public void SetPosition(Vector2I newPosition)
+	{
+		this.CurrentPosition = new Vector2I(
+			Math.Clamp(newPosition.X, 0, this.BoardSize),
+			Math.Clamp(newPosition.Y, 0 , this.BoardSize)
+		);
+		// Emit signal?
+	}
+
+	public bool MoveUp()
+	{
+		if (this.CurrentPosition.Y <= 0) {
+			return false;
+		}
+
+		// @TODO check if this is actually the right direction? XD
+		this.CurrentPosition = new Vector2I(
+			this.CurrentPosition.X,
+			this.CurrentPosition.Y - 1
+		);
+
+		// @TODO emit signal?
+		return true;
+	}
+
+	public bool MoveDown()
+	{
+		// Does this need to be minus (or plus) 1? 
+		if (this.CurrentPosition.Y >= this.BoardSize) {
+			return false;
+		}
+
+		// @TODO check if this is actually the right direction? XD
+		this.CurrentPosition = new Vector2I(
+			this.CurrentPosition.X,
+			this.CurrentPosition.Y + 1
+		);
+
+		// @TODO emit signal?
+
+		return true;
+	}
+
+	public bool MoveLeft()
+	{
+		if (this.CurrentPosition.X >= 0) {
+			return false;
+		}
+
+		// @TODO check if this is actually the right direction? XD
+		this.CurrentPosition = new Vector2I(
+			this.CurrentPosition.X - 1,
+			this.CurrentPosition.Y
+		);
+
+		// @TODO emit signal?
+
+		return true;
+	}
+
+	public bool MoveRight()
+	{
+		// Does this need to be minus (or plus) 1? 
+		if (this.CurrentPosition.X >= this.BoardSize) {
+			return false;
+		}
+
+		// @TODO check if this is actually the right direction? XD
+		this.CurrentPosition = new Vector2I(
+			this.CurrentPosition.X,
+			this.CurrentPosition.Y + 1
+		);
+
+		// @TODO emit signal?
+
+		return true;
 	}
 }

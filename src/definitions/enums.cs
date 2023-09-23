@@ -6,4 +6,12 @@ public enum GameState {
     Running,
     BeforeEnd,
     Ended
-};
+}
+
+
+public enum MovementDirection {
+    Up,
+    Down,
+    Left,
+    Right
+}
